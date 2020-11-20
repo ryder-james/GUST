@@ -3,11 +3,14 @@
 using GUST.Characters;
 
 namespace GUST.Spells.Prereqs {
+	[CreateAssetMenu(fileName = "AdvantagePrereq", menuName = PrereqAssetMenuPrefix + "Advantage")]
 	public class AdvantagePrereq : Prereq {
-		private int minLevel;
+		[SerializeField, Min(0)] private int minLevel = 0;
+		[SerializeField] private string advantageName = "";
+		[SerializeField] private string specialization = "";
 
-		public string AdvantageName { get; set; }
-		public string Specialization { get; set; }
+		public string AdvantageName { get => advantageName; set => advantageName = value; }
+		public string Specialization { get => specialization; set => specialization = value; }
 		public int MinLevel {
 			get => minLevel;
 			set => minLevel = Mathf.Max(0, value);

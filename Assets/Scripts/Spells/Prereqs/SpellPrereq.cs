@@ -3,10 +3,12 @@
 using GUST.Characters;
 
 namespace GUST.Spells.Prereqs {
+	[CreateAssetMenu(fileName = "SpellPrereq", menuName = PrereqAssetMenuPrefix + "Spell")]
 	public class SpellPrereq : Prereq {
-		private int minLevel;
+		[SerializeField, Min(0)] private int minLevel = 0;
+		[SerializeField] private Spell spell = null;
 
-		public Spell Spell { get; set; }
+		public Spell Spell { get => spell; set => spell = value; }
 		public int MinLevel {
 			get => minLevel;
 			set => minLevel = Mathf.Max(0, value);

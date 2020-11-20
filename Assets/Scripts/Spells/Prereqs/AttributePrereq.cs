@@ -4,17 +4,15 @@ using UnityEngine;
 using GUST.Characters;
 
 namespace GUST.Spells.Prereqs {
+	[CreateAssetMenu(fileName = "AttributePrereq", menuName = PrereqAssetMenuPrefix + "Attribute")]
 	public class AttributePrereq : Prereq {
-		private int minAttributeSum;
+		[SerializeField, Min(0)] private int minAttributeSum = 0;
+		[SerializeField] private List<Attribute> attributes = new List<Attribute>();
 
-		public List<Attribute> Attributes { get; }
+		public List<Attribute> Attributes => attributes;
 		public int MinAttributeSum {
 			get => minAttributeSum;
 			set => minAttributeSum = Mathf.Max(0, value);
-		}
-
-		public AttributePrereq() {
-			Attributes = new List<Attribute>();
 		}
 
 		public override bool IsMet(Character caster) {
