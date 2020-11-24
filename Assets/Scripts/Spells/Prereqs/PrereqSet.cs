@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 using GUST.Characters;
 
 namespace GUST.Spells.Prereqs {
-
+	[CreateAssetMenu(fileName = "PrereqSet", menuName = PrereqAssetMenuPrefix + "Prereq Set")]
 	public class PrereqSet : Prereq {
-		public List<Prereq> Prereqs { get; }
-		public ComparisonType Comparator { get; set; }
+		[SerializeField] private ComparisonType comparator = ComparisonType.And;
+		[SerializeField] private List<Prereq> prereqs = new List<Prereq>();
 
-		public PrereqSet() {
-			Prereqs = new List<Prereq>();
-		}
+		public List<Prereq> Prereqs => prereqs;
+		public ComparisonType Comparator { get => comparator; set => comparator = value; }
 
 		public override bool IsMet(Character caster) {
 			bool result;

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e37244ca057a404cbb58ca299c701f2, type: 3}
+  m_Name: AirJet
+  m_EditorClassIdentifier: 
+  name: Air Jet
+  description: "Shoot a thin jet of air from one finger. Each turn, the caster rolls
+    versus\r DX-4 or Innate Attack skill to hit. This\r attack may be dodged or blocked,
+    but\r not parried. The jet does 2d knockback damage for every point of energy\r
+    put into the spell, and has a range in\r yards equal to the number of dice in\r
+    the attack. The jet does injury damage\r to vaporous beings or swarms. It is\r
+    also good for sweeping the floor."
+  techLevel: 
+  powerSource: 
+  spellClass: Regular
+  pageRef: M24
+  notes: 
+  isResisted: 0
+  resistedBy: 3
+  spellSkill: {fileID: 0}
+  spellCost: {fileID: 0}
+  maintenanceCost: {fileID: 0}
+  castingTime: {fileID: 0}
+  duration: {fileID: 0}
+  enchantmentInfo: {fileID: 0}
+  colleges:
+  - Air
+  prereqs:
+  - {fileID: 11400000, guid: 8d7c2f72980af6d4a9e58fa6c8f19a53, type: 2}

@@ -1,40 +1,56 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 using GUST.Characters;
+using GUST.Spells.Prereqs;
 
 namespace GUST.Spells {
-	public class Spell {
-		public string Name { get; set; }
-		public string Description { get; set; }
-		public string TechLevel { get; set; }
-		public string PowerSource { get; set; }
-		public string SpellClass { get; set; }
-		public string PageRef { get; set; }
-		public string Notes { get; set; }
+	[CreateAssetMenu(fileName = "Spell", menuName = "GUST/Spell")]
+	public class Spell : ScriptableObject {
+		[SerializeField] private new string name = "";
+		[SerializeField] private string description = "";
+		[SerializeField] private string techLevel = "";
+		[SerializeField] private string powerSource = "";
+		[SerializeField] private string spellClass = "";
+		[SerializeField] private string pageRef = "";
+		[SerializeField] private string notes = "";
 
-		public Skill SpellSkill { get; }
+		[SerializeField] private bool isResisted = false;
+		[SerializeField] private Attribute resistedBy = Attribute.HT;
 
-		public bool IsResisted { get; set; }
-		public Attribute ResistedBy { get; set; }
+		[SerializeField] private Skill spellSkill = null;
 
-		public ShortenableString SpellCost { get; }
-		public ShortenableString MaintenanceCost { get; }
-		public ShortenableString CastingTime { get; }
-		public ShortenableString Duration { get; }
+		[SerializeField] private ShortenableString spellCost = null;
+		[SerializeField] private ShortenableString maintenanceCost = null;
+		[SerializeField] private ShortenableString castingTime = null;
+		[SerializeField] private ShortenableString duration = null;
+		[SerializeField] private EnchantmentInfo enchantmentInfo = null;
 
-		public EnchantmentInfo EnchantmentInfo { get; }
+		[SerializeField] private List<string> colleges = new List<string>();
+		[SerializeField] private List<Prereq> prereqs = new List<Prereq>();
 
-		public List<string> Colleges { get; }
+		public string Name { get => name; set => name = value; }
+		public string Description { get => description; set => description = value; }
+		public string TechLevel { get => techLevel; set => techLevel = value; }
+		public string PowerSource { get => powerSource; set => powerSource = value; }
+		public string SpellClass { get => spellClass; set => spellClass = value; }
+		public string PageRef { get => pageRef; set => pageRef = value; }
+		public string Notes { get => notes; set => notes = value; }
 
-		public Spell() {
-			SpellSkill = new Skill();
-			SpellCost = new ShortenableString();
-			MaintenanceCost = new ShortenableString();
-			CastingTime = new ShortenableString();
-			Duration = new ShortenableString();
-			EnchantmentInfo = new EnchantmentInfo();
-			Colleges = new List<string>();
-		}
+		public Skill SpellSkill { get => spellSkill; set => spellSkill = value; }
+
+		public bool IsResisted { get => isResisted; set => isResisted = value; }
+		public Attribute ResistedBy { get => resistedBy; set => resistedBy = value; }
+
+		public ShortenableString SpellCost { get => spellCost; set => spellCost = value; }
+		public ShortenableString MaintenanceCost { get => maintenanceCost; set => maintenanceCost = value; }
+		public ShortenableString CastingTime { get => castingTime; set => castingTime = value; }
+		public ShortenableString Duration { get => duration; set => duration = value; }
+
+		public EnchantmentInfo EnchantmentInfo { get => enchantmentInfo; set => enchantmentInfo = value; }
+
+		public List<string> Colleges => colleges;
+		public List<Prereq> Prereqs => prereqs;
 
 		public bool AddCollege(string college) {
 			if (!Colleges.Contains(college)) {
