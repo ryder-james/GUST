@@ -3,11 +3,12 @@
 using GUST.Characters;
 
 namespace GUST.Spells.Prereqs {
-
+	[CreateAssetMenu(fileName = "CollegePrereq", menuName = PrereqAssetMenuPrefix + "College")]
 	public class CollegePrereq : Prereq {
-		public string College { get; set; }
-		private int minSpellsKnown;
+		[SerializeField, Min(0)] private int minSpellsKnown = 0;
+		[SerializeField] private string college = "";
 
+		public string College { get => college; set => college = value; }
 		public int MinSpellsKnownInCollege {
 			get => minSpellsKnown;
 			set => minSpellsKnown = Mathf.Max(0, value);

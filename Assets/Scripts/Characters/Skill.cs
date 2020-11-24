@@ -1,8 +1,14 @@
-﻿namespace GUST.Characters {
-	public class Skill {
-		public int Points { get; set; }
-		public Attribute Attribute { get; set; }
-		public SkillDifficulty Difficulty { get; set; }
+﻿using UnityEngine;
+
+namespace GUST.Characters {
+	public class Skill : ScriptableObject {
+		[SerializeField] private int points = 0;
+		[SerializeField] private Attribute attribute = Attribute.IQ;
+		[SerializeField] private SkillDifficulty difficulty = SkillDifficulty.Hard;
+
+		public int Points { get => points; set => points = value; }
+		public Attribute Attribute { get => attribute; set => attribute = value; }
+		public SkillDifficulty Difficulty { get => difficulty; set => difficulty = value; }
 
 		public string RelativeSkillLevel {
 			get {
