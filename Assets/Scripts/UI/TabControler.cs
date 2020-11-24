@@ -7,9 +7,6 @@ public class TabControler : MonoBehaviour
     [SerializeField] public List<Tab> tabs;
     [SerializeField] public List<GameObject> menus;
     [SerializeField] public Tab selectedTab;
-    //[SerializeField] public Color idle;
-    //[SerializeField] public Color hover;
-    //[SerializeField] public Color clicked;
 
     public void Subscribe(Tab tab)
     {
@@ -24,21 +21,15 @@ public class TabControler : MonoBehaviour
 
     public void Enter(Tab tab)
     {
-        Reset();
-        //tab.image.tintColor = hover;
-        //Debug.Log(tab.image.tintColor);
     }
 
     public void Exit(Tab tab)
     {
-        Reset();
     }
 
     public void Clicked(Tab tab)
     {
         selectedTab = tab;
-        Reset();
-        //tab.image.tintColor = clicked;
         int index = tab.transform.GetSiblingIndex();
         for (int i = 0; i < menus.Count; i++)
         {
@@ -50,14 +41,6 @@ public class TabControler : MonoBehaviour
             {
                 menus[i].SetActive(false);
             }
-        }
-    }
-
-    public void Reset()
-    {
-        foreach (Tab tab in tabs)
-        {
-            //tab.image.tintColor = idle;
         }
     }
 
