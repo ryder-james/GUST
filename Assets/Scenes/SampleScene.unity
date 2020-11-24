@@ -546,7 +546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.19427705, a: 0.392}
+  m_Color: {r: 0, g: 1, b: 0.12855339, a: 0.392}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1199,6 +1199,7 @@ MonoBehaviour:
   - {fileID: 1267030033}
   - {fileID: 578207022}
   selectedTab: {fileID: 1330335264}
+  changedText: {fileID: 1616108341}
 --- !u!1 &1048244274
 GameObject:
   m_ObjectHideFlags: 0

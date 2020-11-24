@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TabControler : MonoBehaviour
@@ -7,6 +8,7 @@ public class TabControler : MonoBehaviour
     [SerializeField] public List<Tab> tabs;
     [SerializeField] public List<GameObject> menus;
     [SerializeField] public Tab selectedTab;
+    [SerializeField] public TMP_Text changedText;
 
     public void Subscribe(Tab tab)
     {
@@ -30,6 +32,7 @@ public class TabControler : MonoBehaviour
     public void Clicked(Tab tab)
     {
         selectedTab = tab;
+        changedText.text = tab.GetComponentInChildren<TMP_Text>().text;
         int index = tab.transform.GetSiblingIndex();
         for (int i = 0; i < menus.Count; i++)
         {
