@@ -20,6 +20,7 @@ public class SlidingMenu : MonoBehaviour
 
     public void Slide()
     {
+        gameObject.SetActive(true);
         StartCoroutine(nameof(MoveTo));
         IsOpen = !IsOpen;
     }
@@ -29,6 +30,11 @@ public class SlidingMenu : MonoBehaviour
         while (IsMoving)
         {
             yield return null;
+        }
+
+        if (!IsOpen)
+        {
+            gameObject.SetActive(true);
         }
 
         IsMoving = true;
@@ -41,6 +47,10 @@ public class SlidingMenu : MonoBehaviour
         }
         transform.position = tend;
         IsMoving = false;
+        if(!IsOpen)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
 }
