@@ -21,7 +21,7 @@ public class QuickSpellView : MonoBehaviour {
 			notes.text = spell.Notes;
 			if (Caster != null) {
 				skillLevelContainer.SetActive(true);
-				skillLevel.text = spell.SpellSkill.RelativeSkillLevel;
+				skillLevel.text = spell.SpellSkill.GetRelativeSkillLevel(Caster.Spells[spell]);
 			} else {
 				skillLevelContainer.SetActive(false);
 			}

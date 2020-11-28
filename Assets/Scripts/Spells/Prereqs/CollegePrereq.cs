@@ -17,7 +17,7 @@ namespace GUST.Spells.Prereqs {
 		public override bool IsMet(Character caster) {
 			int relatedSpells = 0;
 
-			foreach (Spell spell in caster.Spells) {
+			foreach (Spell spell in caster.Spells.Keys) {
 				if (spell.Colleges.Contains(College)) {
 					relatedSpells++;
 				}
