@@ -78,41 +78,48 @@ public class SpellEditor : Editor {
 			EditorGUILayout.PropertyField(resistedBy);
 		}
 
-		spell.SpellSkill = DrawSettingsEditor(spell.SpellSkill, ref spellSkillEditor, ref spellSkill, out bool remove);
-		if (remove) {
-			DestroyImmediate(spell.SpellSkill);
-			spell.SpellSkill = null;
-		}
+		EditorGUILayout.PropertyField(spellSkill);
+		EditorGUILayout.PropertyField(spellCost);
+		EditorGUILayout.PropertyField(maintenanceCost);
+		EditorGUILayout.PropertyField(castingTime);
+		EditorGUILayout.PropertyField(duration);
+		EditorGUILayout.PropertyField(enchantmentInfo);
 
-		spell.SpellCost = DrawSettingsEditor(spell.SpellCost, ref spellCostEditor, ref spellCost, out remove);
-		if (remove) {
-			DestroyImmediate(spell.SpellCost);
-			spell.SpellCost = null;
-		}
+		//spell.SpellSkill = DrawSettingsEditor(spell.SpellSkill, ref spellSkillEditor, ref spellSkill, out bool remove);
+		//if (remove) {
+		//	DestroyImmediate(spell.SpellSkill);
+		//	spell.SpellSkill = null;
+		//}
 
-		spell.MaintenanceCost = DrawSettingsEditor(spell.MaintenanceCost, ref maintenanceCostEditor, ref maintenanceCost, out remove);
-		if (remove) {
-			DestroyImmediate(spell.MaintenanceCost);
-			spell.MaintenanceCost = null;
-		}
+		//spell.SpellCost = DrawSettingsEditor(spell.SpellCost, ref spellCostEditor, ref spellCost, out remove);
+		//if (remove) {
+		//	DestroyImmediate(spell.SpellCost);
+		//	spell.SpellCost = null;
+		//}
 
-		spell.CastingTime = DrawSettingsEditor(spell.CastingTime, ref castingTimeEditor, ref castingTime, out remove);
-		if (remove) {
-			DestroyImmediate(spell.CastingTime);
-			spell.CastingTime = null;				
-		}
+		//spell.MaintenanceCost = DrawSettingsEditor(spell.MaintenanceCost, ref maintenanceCostEditor, ref maintenanceCost, out remove);
+		//if (remove) {
+		//	DestroyImmediate(spell.MaintenanceCost);
+		//	spell.MaintenanceCost = null;
+		//}
 
-		spell.Duration = DrawSettingsEditor(spell.Duration, ref durationEditor, ref duration, out remove);
-		if (remove) {
-			DestroyImmediate(spell.Duration);
-			spell.Duration = null;
-		}
+		//spell.CastingTime = DrawSettingsEditor(spell.CastingTime, ref castingTimeEditor, ref castingTime, out remove);
+		//if (remove) {
+		//	DestroyImmediate(spell.CastingTime);
+		//	spell.CastingTime = null;				
+		//}
 
-		spell.EnchantmentInfo = DrawSettingsEditor(spell.EnchantmentInfo, ref enchantmentInfoEditor, ref enchantmentInfo, out remove);
-		if (remove) {
-			DestroyImmediate(spell.EnchantmentInfo);
-			spell.EnchantmentInfo = null;
-		}
+		//spell.Duration = DrawSettingsEditor(spell.Duration, ref durationEditor, ref duration, out remove);
+		//if (remove) {
+		//	DestroyImmediate(spell.Duration);
+		//	spell.Duration = null;
+		//}
+
+		//spell.EnchantmentInfo = DrawSettingsEditor(spell.EnchantmentInfo, ref enchantmentInfoEditor, ref enchantmentInfo, out remove);
+		//if (remove) {
+		//	DestroyImmediate(spell.EnchantmentInfo);
+		//	spell.EnchantmentInfo = null;
+		//}
 
 		EditorGUILayout.PropertyField(colleges);
 		EditorGUILayout.PropertyField(prereqs);

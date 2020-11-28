@@ -15,10 +15,10 @@ namespace GUST.Spells.Prereqs {
 		}
 
 		public override bool IsMet(Character caster) {
-			foreach (Spell spell in caster.Spells) {
+			foreach (Spell spell in caster.Spells.Keys) {
 				if (spell.Name == Spell.Name) {
 					Attribute att = spell.SpellSkill.Attribute;
-					return spell.SpellSkill.GetLevel(caster[att]) >= MinLevel;
+					return spell.SpellSkill.GetLevel(caster.Spells[spell], caster[att]) >= MinLevel;
 				}
 			}
 

@@ -8,7 +8,7 @@ namespace GUST.Characters {
 		public HealthReserve HitPoints { get; }
 		public FatigueReserve FatiguePoints { get; }
 		public List<Reserve> EnergyReserves { get; }
-		public List<Spell> Spells { get; }
+		public Dictionary<Spell, int> Spells { get; }
 		public List<Advantage> Advantages { get; }
 
 		public Advantage MageryAdvantage { get; set; }
