@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 
 using GUST.Spells;
+using UnityEngine;
 
 namespace GUST.Characters {
-	public class Character {
+	public class Character : ScriptableObject {
 		public HealthReserve HitPoints { get; }
 		public FatigueReserve FatiguePoints { get; }
 		public List<Reserve> EnergyReserves { get; }
