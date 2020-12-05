@@ -5,7 +5,7 @@ namespace GUST.Characters {
 	public class Reserve {
 		private int current, basic;
 
-		public virtual string Name { get; }
+		public virtual string Name { get; set; }
 
 		public int Current {
 			get => current;
@@ -24,8 +24,10 @@ namespace GUST.Characters {
 			Name = "";
 		}
 
-		public Reserve(string name) {
+		public Reserve(string name, int basic) {
 			Name = name;
+			Basic = basic;
+			Current = basic;
 		}
 
 		public override bool Equals(object obj) {

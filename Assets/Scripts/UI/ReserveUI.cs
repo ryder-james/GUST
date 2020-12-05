@@ -11,88 +11,109 @@ public class ReserveUI : MonoBehaviour {
 	[SerializeField] private Image background = null;
 	[SerializeField] private Image currentBar = null;
 	[SerializeField] private Image basicBar = null;
-	[SerializeField] private TMP_Text titleText = null;
-	[SerializeField] private TMP_Text currentValue = null;
-	[SerializeField] private TMP_Text basicValue = null;
+	[SerializeField] private TMP_InputField titleText = null;
+	[SerializeField] private TMP_InputField currentValue = null;
+	[SerializeField] private TMP_InputField basicValue = null;
 	[SerializeField] private TMP_Text currentText = null;
 	[SerializeField] private TMP_Text basicText = null;
 
-	public Reserve Reserve { get; set; }
+	public Character Caster { get; set; }
+	public Reserve Reserve { get; private set; }
 
 	protected virtual string DefaultTitle => "Energy Reserve";
 	protected const int DefaultValue = 10;
 
-	protected virtual void Update() {
+	private void Start() {
+		ResetReserve();
+	}
+
+	private void Update() {
+		UpdateColor();
+	}
+
+	public void UpdateValues() {
 		if (Reserve != null) {
-			if (titleText != null) {
-				titleText.text = Reserve.Name;
-				titleText.color = Color.white;
-			}
-
-			if (currentValue != null) {
-				currentValue.text = Reserve.Current.ToString();
-				currentValue.color = color;
-			}
-
-			if (basicValue != null) {
-				basicValue.text = Reserve.Basic.ToString();
-				basicValue.color = color;
-			}
-
-			if (background != null) {
-				background.color = color;
-			}
-
-			if (currentBar != null) {
-				currentBar.color = color;
-			}
-
-			if (basicBar != null) {
-				basicBar.color = color;
-			}
-
-			if (currentText != null) {
-				currentText.color = color;
-			}
-
-			if (basicText != null) {
-				basicText.color = color;
-			}
-		} else {
-			if (titleText != null) {
-				titleText.text = DefaultTitle;
-				titleText.color = Color.white;
-			}
-
-			if (currentValue != null) {
-				currentValue.text = DefaultValue.ToString();
-				currentValue.color = color;
-			}
-
-			if (basicValue != null) {
-				basicValue.text = DefaultValue.ToString();
-				basicValue.color = color;
-			}
-
-			if (background != null) {
-				background.color = color;
-			}
-
-			if (currentBar != null) {
-				currentBar.color = color;
-			}
-
-			if (basicBar != null) {
-				basicBar.color = color;
-			}
-
-			if (currentText != null) {
-				currentText.color = color;
-			}
-
-			if (basicText != null) {
-				basicText.color = color;
-			}
+			Reserve.Name = titleText.text;
+			Reserve.Current = int.Parse(currentValue.text);
+			Reserve.Basic = int.Parse(basicValue.text);
+			UpdateReserve();
 		}
+	}
+
+	public virtual void ResetReserve(bool eraseCaster = false) {
+		if (eraseCaster) {
+			Caster = null;
+		}
+
+		Reserve = new Reserve(DefaultTitle, DefaultValue);
+
+		UpdateReserve();
+	}
+
+	public void UpdateReserve(Character caster = null, Reserve reserve = null) {
+		if (caster != null) {
+			Caster = caster;
+		}
+		if (reserve != null) {
+			Reserve = reserve;
+		}
+
+		UpdateText(Reserve.Name, Reserve.Current, Reserve.Basic);
+		
+	}
+
+	protected virtual void UpdateText(string title, int current, int basic) {
+		if (titleText != null) {
+			titleText.text = title;
+		}
+
+		if (currentValue != null) {
+			currentValue.text = current.ToString();
+		}
+
+		if (basicValue != null) {
+			basicValue.text = basic.ToString();
+		}
+	}
+
+	private void UpdateColor() {
+		if (titleText != null) {
+			titleText.textComponent.color = Color.white;
+		}
+
+		if (currentValue != null) {
+			currentValue.textComponent.color = color;
+		}
+
+		if (basicValue != null) {
+			basicValue.textComponent.color = color;
+		}
+
+		if (background != null) {
+			background.color = color;
+		}
+
+		if (currentBar != null) {
+			currentBar.color = color;
+		}
+
+		if (basicBar != null) {
+			basicBar.color = color;
+		}
+
+		if (currentText != null) {
+			currentText.color = color;
+		}
+
+		if (basicText != null) {
+			basicText.color = color;
+		}
+	}
+
+	public void Delete() {
+		if (Caster != null) {
+			Caster.EnergyReserves.Remove(Reserve);
+		}
+		Destroy(gameObject);
 	}
 }

@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace GUST.Characters {
 	public class Character : ScriptableObject {
-		public HealthReserve HitPoints { get; }
-		public FatigueReserve FatiguePoints { get; }
-		public List<Reserve> EnergyReserves { get; }
-		public Dictionary<Spell, int> Spells { get; }
-		public List<Advantage> Advantages { get; }
+		public HealthReserve HitPoints { get; private set; }
+		public FatigueReserve FatiguePoints { get; private set; }
+		public List<Reserve> EnergyReserves { get; private set; }
+		public Dictionary<Spell, int> Spells { get; private set; }
+		public List<Advantage> Advantages { get; private set; }
 
 		public Advantage MageryAdvantage { get; set; }
 		public string Name { get; set; }
@@ -23,7 +23,21 @@ namespace GUST.Characters {
 
 		public Character(string name) {
 			Name = name;
-			attributes = new Dictionary<Attribute, int>();
+
+			HitPoints = new HealthReserve();
+			FatiguePoints = new FatigueReserve();
+			EnergyReserves = new List<Reserve>();
+			Spells = new Dictionary<Spell, int>();
+			Advantages = new List<Advantage>();
+
+			attributes = new Dictionary<Attribute, int> {
+				[Attribute.ST] = 10,
+				[Attribute.DX] = 10,
+				[Attribute.IQ] = 10,
+				[Attribute.HT] = 10,
+				[Attribute.Will] = 10,
+				[Attribute.Perception] = 10
+			};
 		}
 	}
 }
