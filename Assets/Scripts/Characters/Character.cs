@@ -6,9 +6,9 @@ using UnityEngine;
 namespace GUST.Characters {
 	public class Character : ScriptableObject {
 		public struct SpellData {
-			int skillLevel;
-			string notes;
-			string relatedSkill;
+			public int skillLevel;
+			public string notes;
+			public string relatedSkill;
 		}
 
 		public HealthReserve HitPoints { get; private set; }
