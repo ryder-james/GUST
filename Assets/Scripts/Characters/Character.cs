@@ -5,10 +5,16 @@ using UnityEngine;
 
 namespace GUST.Characters {
 	public class Character : ScriptableObject {
+		public struct SpellData {
+			int skillLevel;
+			string notes;
+			string relatedSkill;
+		}
+
 		public HealthReserve HitPoints { get; private set; }
 		public FatigueReserve FatiguePoints { get; private set; }
 		public List<Reserve> EnergyReserves { get; private set; }
-		public Dictionary<Spell, int> Spells { get; private set; }
+		public Dictionary<Spell, SpellData> Spells { get; private set; }
 		public List<Advantage> Advantages { get; private set; }
 
 		public Advantage MageryAdvantage { get; set; }
@@ -27,7 +33,7 @@ namespace GUST.Characters {
 			HitPoints = new HealthReserve();
 			FatiguePoints = new FatigueReserve();
 			EnergyReserves = new List<Reserve>();
-			Spells = new Dictionary<Spell, int>();
+			Spells = new Dictionary<Spell, SpellData>();
 			Advantages = new List<Advantage>();
 
 			attributes = new Dictionary<Attribute, int> {
