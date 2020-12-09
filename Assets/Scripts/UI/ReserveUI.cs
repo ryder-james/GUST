@@ -18,26 +18,31 @@ public class ReserveUI : MonoBehaviour {
 	[SerializeField] private TMP_Text basicText = null;
 
 	public Character Caster { get; set; }
-	public Reserve Reserve { get; private set; }
+	private Reserve reserve;
+	public Reserve Reserve { 
+		get {
+			if (reserve == null) {
+				reserve = new Reserve(DefaultTitle, DefaultValue);
+			}
+
+			return reserve;
+		}
+		private set => reserve = value;
+	}
 
 	protected virtual string DefaultTitle => "Energy Reserve";
 	protected const int DefaultValue = 10;
-
-	private void Start() {
-		ResetReserve();
-	}
 
 	private void Update() {
 		UpdateColor();
 	}
 
 	public void UpdateValues() {
-		if (Reserve != null) {
-			Reserve.Name = titleText.text;
-			Reserve.Current = int.Parse(currentValue.text);
-			Reserve.Basic = int.Parse(basicValue.text);
-			UpdateReserve();
-		}
+		Reserve.Name = titleText.text;
+		Reserve.Current = int.Parse(currentValue.text);
+		Reserve.Basic = int.Parse(basicValue.text);
+
+		UpdateText(Reserve.Name, Reserve.Current, Reserve.Basic);
 	}
 
 	public virtual void ResetReserve(bool eraseCaster = false) {
@@ -47,15 +52,19 @@ public class ReserveUI : MonoBehaviour {
 
 		Reserve = new Reserve(DefaultTitle, DefaultValue);
 
-		UpdateReserve();
+		UpdateText(Reserve.Name, Reserve.Current, Reserve.Basic);
 	}
 
-	public void UpdateReserve(Character caster = null, Reserve reserve = null) {
+	public void UpdateReserve(ref Character caster, int rID) {
 		if (caster != null) {
 			Caster = caster;
 		}
-		if (reserve != null) {
-			Reserve = reserve;
+
+		Reserve = caster.FindReserve(rID);
+
+		if (Reserve == null) {
+			Debug.LogWarning($"Warning: Could not find reserve {rID} in {caster.Name}");
+			Reserve = new Reserve(DefaultTitle, DefaultValue);
 		}
 
 		UpdateText(Reserve.Name, Reserve.Current, Reserve.Basic);
@@ -112,8 +121,9 @@ public class ReserveUI : MonoBehaviour {
 
 	public void Delete() {
 		if (Caster != null) {
-			Caster.EnergyReserves.Remove(Reserve);
+			Caster.RemoveReserve(Reserve.ID);
 		}
+
 		Destroy(gameObject);
 	}
 }

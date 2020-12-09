@@ -11,34 +11,38 @@ public class CharacterStatsUI : MonoBehaviour {
 	[SerializeField] private RectTransform reserveParent = null;
 	[SerializeField] private AttributeUI attributeUI = null;
 
-	public Character Caster { get; private set; }
+	private Character caster;
 
 	public void Load(Character caster) {
-		Caster = caster;
+		this.caster = caster;
 
-		if (Caster != null) {
-			hitPoints.UpdateReserve(Caster, Caster.HitPoints);
-			fatiguePoints.UpdateReserve(caster, Caster.FatiguePoints);
+		if (caster != null) {
+			hitPoints.UpdateReserve(ref caster, caster.HitPoints.ID);
+			fatiguePoints.UpdateReserve(ref caster, caster.FatiguePoints.ID);
 
-			for (int i = 2; i < reserveParent.childCount; i++) {
-				Destroy(reserveParent.GetChild(i));
+			for (int i = 2; i < reserveParent.childCount - 1; i++) {
+				Destroy(reserveParent.GetChild(i).gameObject);
 			}
-			foreach (Reserve r in Caster.EnergyReserves) {
+			foreach (Reserve r in caster.EnergyReserves) {
 				ReserveUI rUI = Instantiate(reservePrefab, reserveParent).GetComponent<ReserveUI>();
-				rUI.UpdateReserve(caster, r);
+				rUI.UpdateReserve(ref caster, r.ID);
+				rUI.transform.SetSiblingIndex(reserveParent.childCount - 2);
 			}
 
-			attributeUI.UpdateStats(Caster);
+			attributeUI.UpdateStats(caster);
 		}
 	}
 
 	public void AddReserve() {
-		Reserve r = new Reserve("Energy Reserve", 10);
-		ReserveUI rUI = Instantiate(reservePrefab, reserveParent).GetComponent<ReserveUI>();
-		rUI.UpdateReserve(Caster, r);
-		rUI.transform.SetSiblingIndex(reserveParent.childCount - 2);
-		if (Caster != null) {
-			Caster.EnergyReserves.Add(r);
+		Reserve r;
+		if (caster != null) {
+			r = caster.AddReserve("Energy Reserve");
+		} else {
+			r = new Reserve("Energy Reserve", 10);
 		}
+
+		ReserveUI rUI = Instantiate(reservePrefab, reserveParent).GetComponent<ReserveUI>();
+		rUI.UpdateReserve(ref caster, r.ID);
+		rUI.transform.SetSiblingIndex(reserveParent.childCount - 2);
 	}
 }

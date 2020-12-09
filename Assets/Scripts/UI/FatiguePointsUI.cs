@@ -12,6 +12,8 @@ public class FatiguePointsUI : ReserveUI {
 	protected override string DefaultTitle => "Fatigue Points";
 
 	protected override void UpdateText(string title, int current, int basic) {
+		base.UpdateText(title, current, basic);
+
 		if (checkText != null) {
 			checkText.text = CalculateChecks(basic);
 		}
