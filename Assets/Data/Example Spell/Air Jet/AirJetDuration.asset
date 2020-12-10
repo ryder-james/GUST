@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96449653d6f13454b9d5c08a3ff814ca, type: 3}
   m_Name: AirJetDuration
   m_EditorClassIdentifier: 
-  shortString: 
-  detailedString: 
+  shortString: 1
+  detailedString: 1

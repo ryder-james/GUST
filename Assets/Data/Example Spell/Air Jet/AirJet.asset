@@ -26,12 +26,12 @@ MonoBehaviour:
   notes: 
   isResisted: 0
   resistedBy: 3
-  spellSkill: {fileID: 0}
-  spellCost: {fileID: 0}
-  maintenanceCost: {fileID: 0}
-  castingTime: {fileID: 0}
-  duration: {fileID: 0}
-  enchantmentInfo: {fileID: 0}
+  spellSkill: {fileID: 11400000, guid: 2497db1f073aa08459991be22d9464ee, type: 2}
+  spellCost: {fileID: 11400000, guid: 04e9ef710ffe19144bd95d95b2471395, type: 2}
+  maintenanceCost: {fileID: 11400000, guid: 20c1f632539e02b49b9800956814f986, type: 2}
+  castingTime: {fileID: 11400000, guid: 1a19c400748b38749a3c09c2f096cf45, type: 2}
+  duration: {fileID: 11400000, guid: 9df78bb554fbda84bba7ec6749d2371a, type: 2}
+  enchantmentInfo: {fileID: 11400000, guid: ca1ba42ee64fa044a897416793e2a29d, type: 2}
   colleges:
   - Air
   prereqs:

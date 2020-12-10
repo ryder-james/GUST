@@ -29,6 +29,11 @@ public class SpellPopup : Popup<Spell>
         StartCoroutine(nameof(Move));
     }
 
+    public void Leave()
+    {
+        StartCoroutine(nameof(Close));
+    }
+
     private IEnumerator Move()
     {
         Vector3 tstart = header.transform.localPosition;
@@ -57,6 +62,31 @@ public class SpellPopup : Popup<Spell>
             yield return null;
         }
         body.transform.localPosition = tend;
+    }
+
+    private IEnumerator Close()
+    {
+        Vector3 tstart = header.transform.position;
+        Vector3 tend = tstart;
+        tend.x += header.GetComponent<RectTransform>().rect.width;
+
+        Vector3 tstart2 = body.transform.position;
+        Vector3 tend2 = tstart2;
+        tend2.x += body.GetComponent<RectTransform>().rect.width;
+
+        for (float t = 0; t < time; t += Time.deltaTime)
+        {
+            header.transform.position = Vector3.Lerp(tstart, tend, t / time);
+            body.transform.position = Vector3.Lerp(tstart2, tend2, t / time);
+            yield return null;
+        }
+        header.transform.position = tend;
+        body.transform.position = tend2;
+        lePopup.SetActive(false);
+        header.transform.localPosition = new Vector3(0, -100, 0);
+        body.transform.localPosition = new Vector3(0, 567, 0);
+        Title.GetComponent<RectTransform>().anchoredPosition = new Vector3(240, -72, 0);
+
     }
 
 }
