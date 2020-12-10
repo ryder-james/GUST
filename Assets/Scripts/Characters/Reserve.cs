@@ -3,9 +3,11 @@ using UnityEngine;
 
 namespace GUST.Characters {
 	public class Reserve {
+		private static int count = 0;
 		private int current, basic;
 
 		public virtual string Name { get; set; }
+		public int ID { get; }
 
 		public int Current {
 			get => current;
@@ -22,12 +24,16 @@ namespace GUST.Characters {
 
 		public Reserve() {
 			Name = "";
+			Basic = 10;
+			Current = 10;
+			ID = count++;
 		}
 
 		public Reserve(string name, int basic) {
 			Name = name;
 			Basic = basic;
 			Current = basic;
+			ID = count++;
 		}
 
 		public override bool Equals(object obj) {

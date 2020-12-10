@@ -11,6 +11,8 @@ public class HitPointsUI : ReserveUI {
 	protected override string DefaultTitle => "Hit Points";
 
 	protected override void UpdateText(string title, int current, int basic) {
+		base.UpdateText(title, current, basic);
+
 		if (checkText != null) {
 			checkText.text = CalculateChecks(basic);
 		}
