@@ -14,19 +14,20 @@ public class QuickSpellView : MonoBehaviour {
 	[SerializeField] private Spell spell = null;
 
 	public Character Caster { get; set; }
+    public Spell Spell { get => spell; set => spell = value; }
 
-	private void Update() {
-		if (spell != null) {
-			title.text = spell.Name;
-			notes.text = spell.Notes;
+    private void Update() {
+		if (Spell != null) {
+			title.text = Spell.Name;
+			notes.text = Spell.Notes;
 			if (Caster != null) {
 				skillLevelContainer.SetActive(true);
 				skillLevel.text = spell.SpellSkill.GetRelativeSkillLevel(Caster.Spells[spell].skillLevel);
 			} else {
 				skillLevelContainer.SetActive(false);
 			}
-			cost.text = spell.SpellCost.ShortString;
-			castingTime.text = spell.CastingTime.ShortString;
+			cost.text = Spell.SpellCost != null ? Spell.SpellCost.ShortString : "";
+			castingTime.text = Spell.CastingTime != null ? Spell.CastingTime.ShortString : "";
 		} else {
 			title.text = "Air Jet";
 			notes.text = "Notes...";

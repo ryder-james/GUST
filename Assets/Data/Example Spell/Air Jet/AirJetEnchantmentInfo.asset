@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16f30bfb2ac68a4499ef3557a19543b, type: 3}
   m_Name: AirJetEnchantmentInfo
   m_EditorClassIdentifier: 
-  details: 
-  cost: 
+  details: Staff, wand, or jewelry. Usable only by mages; if the item is a staff
+    or wand, the air jet comes from its tip.
+  cost: 300
