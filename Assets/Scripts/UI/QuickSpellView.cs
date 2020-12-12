@@ -22,7 +22,7 @@ public class QuickSpellView : MonoBehaviour {
 			notes.text = Spell.Notes;
 			if (Caster != null) {
 				skillLevelContainer.SetActive(true);
-				skillLevel.text = Spell.SpellSkill.GetRelativeSkillLevel(Caster.Spells[Spell]);
+				skillLevel.text = spell.SpellSkill.GetRelativeSkillLevel(Caster.Spells[spell].skillLevel);
 			} else {
 				skillLevelContainer.SetActive(false);
 			}

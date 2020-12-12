@@ -18,7 +18,7 @@ namespace GUST.Spells.Prereqs {
 			foreach (Spell spell in caster.Spells.Keys) {
 				if (spell.Name == Spell.Name) {
 					Attribute att = spell.SpellSkill.Attribute;
-					return spell.SpellSkill.GetLevel(caster.Spells[spell], caster[att]) >= MinLevel;
+					return spell.SpellSkill.GetLevel(caster.Spells[spell].skillLevel, caster[att]) >= MinLevel;
 				}
 			}
 

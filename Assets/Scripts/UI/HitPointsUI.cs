@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using GUST.Characters;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using TMPro;
@@ -9,19 +10,11 @@ public class HitPointsUI : ReserveUI {
 
 	protected override string DefaultTitle => "Hit Points";
 
-	protected override void Update() {
-		base.Update();
+	protected override void UpdateText(string title, int current, int basic) {
+		base.UpdateText(title, current, basic);
 
-		if (Reserve != null) {
-			if (checkText != null) {
-				checkText.text = CalculateChecks(Reserve.Basic);
-				checkText.color = color;
-			}
-		} else {
-			if (checkText != null) {
-				checkText.text = CalculateChecks(DefaultValue);
-				checkText.color = color;
-			}
+		if (checkText != null) {
+			checkText.text = CalculateChecks(basic);
 		}
 	}
 
