@@ -65,6 +65,19 @@ namespace GUST.Spells {
 			return Colleges.Remove(college);
 		}
 
+		public bool Clear()
+        {
+			bool answer = true;
+			for(int i = 0; i < Colleges.Count;)
+			{
+				if (!RemoveCollege(Colleges[i]))
+                {
+					answer = false;
+                }
+            }
+			return answer;
+        }
+
 		public string GetCollegesString()
         {
 			string answer = "";

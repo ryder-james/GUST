@@ -7,25 +7,51 @@ using TMPro;
 
 public class SpellPopup : Popup<Spell>
 {
-    [SerializeField] GameObject lePopup;
-    [SerializeField] GameObject header;
-    [SerializeField] GameObject body;
-    [SerializeField] QuickSpellView spell;
-    [SerializeField] GameObject HeaderBackground;
-    [SerializeField] TMP_InputField Title;
-    [SerializeField] TMP_InputField Colleges;
-    [SerializeField] TMP_InputField PageRef;
-    [SerializeField] GameObject bootyButton;
-    [SerializeField] float time = 1;
+    [SerializeField] public GameObject lePopup;
+    [SerializeField] public GameObject header;
+    [SerializeField] public GameObject body;
+    [SerializeField] public QuickSpellView spell;
+    [SerializeField] public GameObject HeaderBackground;
+    [SerializeField] public TMP_InputField Title;
+    [SerializeField] public TMP_InputField Colleges;
+    [SerializeField] public TMP_InputField PageRef;
+    [SerializeField] public TMP_InputField Type;
+    [SerializeField] public TMP_InputField details;
+    [SerializeField] public TMP_InputField duration;
+    [SerializeField] public TMP_InputField cost;
+    [SerializeField] public TMP_InputField enchantdet;
+    [SerializeField] public TMP_InputField energycost;
+    [SerializeField] public TMP_InputField notes;
+    [SerializeField] public GameObject bootyButton;
+    [SerializeField] public float time = 1;
+    private static Spell disp = null;
+    [SerializeField] public int test = 0;
+
+
+    private void Awake()
+    {
+        if (test == 1)
+        {
+            lePopup.SetActive(false);
+        }
+    }
 
     public override void Display(Spell displayayyyy)
     {
-        HeaderBackground.GetComponent<Image>().color = spell.GetComponent<Image>().color;
+        disp = displayayyyy;
+        HeaderBackground.GetComponent<Image>().color = new Color(255,0,0);
         Title.text = displayayyyy.Name;
         Colleges.text = displayayyyy.GetCollegesString();
         PageRef.text = displayayyyy.PageRef;
-        header.transform.position = spell.transform.position;
+        Type.text = displayayyyy.SpellClass;
+        details.text = displayayyyy.Description;
+        duration.text = displayayyyy.Duration.DetailedString;
+        cost.text = displayayyyy.SpellCost.DetailedString;
+        enchantdet.text = displayayyyy.EnchantmentInfo.Details;
+        energycost.text = displayayyyy.EnchantmentInfo.Cost;
+        notes.text = displayayyyy.Notes;
         lePopup.SetActive(true);
+        header.transform.position = spell.transform.position;
         StartCoroutine(nameof(Move));
     }
 
@@ -87,6 +113,33 @@ public class SpellPopup : Popup<Spell>
         body.transform.localPosition = new Vector3(0, 567, 0);
         Title.GetComponent<RectTransform>().anchoredPosition = new Vector3(240, -72, 0);
 
+    }
+
+    public void Edit()
+    {
+        Title.interactable = !Title.interactable;
+        Title.textComponent.color = Title.interactable ? new Color(0, 0, 0) : new Color(255, 255, 255);
+        Colleges.interactable = !Colleges.interactable;
+        Colleges.textComponent.color = Title.interactable ? new Color(0, 0, 0) : new Color(255, 255, 255);
+        PageRef.interactable = !PageRef.interactable;
+        PageRef.textComponent.color = Title.interactable ? new Color(0, 0, 0) : new Color(255, 255, 255);
+        Type.interactable = !Type.interactable;
+        details.interactable = !details.interactable;
+        duration.interactable = !duration.interactable;
+        cost.interactable = !cost.interactable;
+        enchantdet.interactable = !enchantdet.interactable;
+        energycost.interactable = !energycost.interactable;
+
+        disp.Name = Title.text;
+        disp.Clear();
+        disp.AddCollege(Colleges.text);
+        disp.PageRef = PageRef.text;
+        disp.SpellClass = Type.text;
+        disp.Description = details.text;
+        disp.Duration.DetailedString = duration.text;
+        disp.SpellCost.DetailedString = cost.text;
+        disp.EnchantmentInfo.Details = enchantdet.text;
+        disp.EnchantmentInfo.Cost = energycost.text;
     }
 
 }
